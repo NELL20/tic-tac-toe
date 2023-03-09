@@ -1,0 +1,71 @@
+
+Java tic tac toe 3 x 3 code Using GUI step by step process
+Sure, I can help you create a Java tic tac toe game using GUI. Here are the steps:
+
+Create a new Java project in your IDE (Integrated Development Environment) of choice.
+Create a new JFrame form and name it "TicTacToeGUI".
+Drag and drop nine JButton components onto the JFrame form.
+Resize and position the JButtons to form a 3x3 grid.
+Rename the JButtons to "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", and "button9".
+Add an ActionListener to each button to handle clicks.
+Create a new class called "TicTacToeGame".
+Add a 2D array to the TicTacToeGame class to represent the game board.
+Create a constructor for the TicTacToeGame class that initializes the game board to an empty state.
+Add a method to the TicTacToeGame class to handle player moves.
+Inside the ActionListener for each button, call the player move method with the appropriate row and column indices based on the button clicked.
+Update the text of the clicked button to display the player's move (either X or O).
+Add logic to the player move method to determine if the move is valid and update the game board accordingly.
+Add logic to check if the game has been won or if there is a tie after each move.
+If the game has been won or there is a tie, display a message to the user indicating the outcome and disable all the buttons.
+Add a "New Game" button to reset the game board and enable all the buttons.
+
+public class TicTacToeGame {
+    private char[][] board;
+
+    public TicTacToeGame() {
+        board = new char[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = ' ';
+            }
+        }
+    }
+
+    public boolean makeMove(int row, int col, char player) {
+        if (board[row][col] == ' ') {
+            board[row][col] = player;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkWin(char player) {
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {
+                return true;
+            }
+            if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {
+                return true;
+            }
+        }
+        if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
+            return true;
+        }
+        if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkTie() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
